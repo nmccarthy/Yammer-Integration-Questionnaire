@@ -1,4 +1,4 @@
-/* ////////////////  Response styles  //////////////// */
+/* ////////////////  Admin styles  //////////////// */
 
 .createQuestion {
 	text-align: center;
@@ -19,8 +19,20 @@
 	background-color: #ebebeb;
 }
 
+.adminSection {
+	margin-top: 40px;
+}
+
+/* ////////////////  New question dialog box styles  //////////////// */
 #newQuestionTable {
 	margin: 20px auto 0 auto;
+}
+
+/* ////////////////  List of questions styles  //////////////// */
+
+#questionTable {
+	margin: 10px auto 0 auto;
+	width: 90%; 
 }
 
 .productCol{
@@ -39,16 +51,51 @@
 	width: 15%;
 }
 
-#questionTable {
-	margin: 35px auto 0 auto;
-	width: 90%; 
-}
-
 #questionTable td {
 	padding: 10px;
 }
 
 #questionTable th {
+	text-align: center;
+	border-bottom: solid 1px #000000;
+}
+
+.centerCell {
+	text-align: center;
+}
+
+/* ////////////////  List of responses styles  //////////////// */
+
+#responseTable {
+	margin: 10px auto 0 auto;
+	width: 90%; 
+}
+
+.productCol{
+	width: 25%;
+}
+
+.userCol {
+	width: 25%;
+}
+
+.dateCol {
+	width: 20%;
+}
+
+.viewCol {
+	width: 15%;
+}
+
+.deleteCol {
+	width: 15%;
+}
+
+#reponseTable td {
+	padding: 10px;
+}
+
+#responseTable th {
 	text-align: center;
 	border-bottom: solid 1px #000000;
 }

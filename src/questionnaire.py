@@ -1,7 +1,7 @@
 from google.appengine.ext import webapp
 from google.appengine.ext.webapp.util import run_wsgi_app
 from google.appengine.ext.webapp import template
-from models import Question, Response, Responder
+from models import Question, Response, Responder, ResponseSet
 from google.appengine.api import mail
 
 class MainPage(webapp.RequestHandler):
@@ -37,8 +37,9 @@ class SSOQuestionnaire(webapp.RequestHandler):
 class QuestionAdmin(webapp.RequestHandler):
     def get(self):
         questions = Question.all()
+        responseSets = ResponseSet.all()
 
-        values = {'questions': questions}
+        values = {'questions': questions, 'responseSets': responseSets}
         self.response.out.write(template.render('templates/questionAdmin.html', values))
 
 class ResponseReview(webapp.RequestHandler):
@@ -51,6 +52,16 @@ class ResponseReview(webapp.RequestHandler):
         values = {'responses': responses, 'question': question}
         self.response.out.write(template.render('templates/responses.html', values))
 
+class ResponseSetReview(webapp.RequestHandler):
+    def get(self):
+        qId = int(self.request.get('id'))
+        responseSet = ResponseSet.get_by_id(qId)
+        responses = Response.all()
+        responses.filter('responseSet =', responseSet)
+
+        values = {'responseSet': responseSet, 'responses': responses}
+        self.response.out.write(template.render('templates/responseSet.html', values))
+
 class NewQuestion(webapp.RequestHandler):
     def post(self):
         newQuestion = Question(text = self.request.get('questionText'), product = self.request.get('productChoice'))
@@ -60,10 +71,25 @@ class NewQuestion(webapp.RequestHandler):
 
 class DeleteQuestion(webapp.RequestHandler):
     def get(self):
-        raw_id = self.request.get('id')
-        id = int(raw_id)
+        id = int(self.request.get('id'))
         question = Question.get_by_id(id)
         question.delete()
+
+        self.redirect('/qadmin')
+
+class DeleteResponseSet(webapp.RequestHandler):
+    def get(self):
+        id = int(self.request.get('id'))
+        responseSet = ResponseSet.get_by_id(id)
+
+        #First, need to delete all the responses that are associated with the response set that I'm deleting
+        responses = Response.all()
+        responses.filter('responseSet =', responseSet)
+        
+        for response in responses:
+            response.delete()
+
+        responseSet.delete()
 
         self.redirect('/qadmin')
 
@@ -72,14 +98,17 @@ class ADRespond(webapp.RequestHandler):
         newUser = Responder(name = self.request.get('name'), email = self.request.get('email'), company = self.request.get('company'))
         newUser.put()
 
+        set = ResponseSet(product = 'ADSync', responder = newUser)
+        set.put()
+
         adQuestions = Question.gql('WHERE product = :1', 'ADSync')
 
         for adQuestion in adQuestions:
             responseText = self.request.get('response' + str(adQuestion.key().id()))
-            response = Response(text = responseText, question = adQuestion, responder = newUser)
+            response = Response(text = responseText, question = adQuestion, responseSet = set)
             response.put()
 
-        mail.send_mail('nmccarthy@gmail.com', 'nmccarthy@muchomail.com', 'Test Subject', 'Test Body')
+        mail.send_mail('nmccarthy@gmail.com', 'nmccarthy@yammer-inc.com', 'Questionnaire Response: ' + newUser.email, 'Test Body')
 
         self.redirect('/adsuccess')
 
@@ -88,11 +117,14 @@ class SPRespond(webapp.RequestHandler):
         newUser = Responder(name = self.request.get('name'), email = self.request.get('email'), company = self.request.get('company'))
         newUser.put()
 
+        set = ResponseSet(product = 'SharePoint Web Part', responder = newUser)
+        set.put()
+
         spQuestions = Question.gql('WHERE product = :1', 'SharePoint Web Part')
 
         for spQuestion in spQuestions:
             responseText = self.request.get('response' + str(spQuestion.key().id()))
-            response = Response(text = responseText, question = spQuestion, responder = newUser)
+            response = Response(text = responseText, question = spQuestion, responseSet = set)
             response.put()
 
         self.redirect('/spsuccess')
@@ -102,11 +134,14 @@ class SSORespond(webapp.RequestHandler):
         newUser = Responder(name = self.request.get('name'), email = self.request.get('email'), company = self.request.get('company'))
         newUser.put()
 
+        set = ResponseSet(product = 'SSO', responder = newUser)
+        set.put()
+
         ssoQuestions = Question.gql('WHERE product = :1', 'SSO')
 
         for ssoQuestion in ssoQuestions:
             responseText = self.request.get('response' + str(ssoQuestion.key().id()))
-            response = Response(text = responseText, question = ssoQuestion, responder = newUser)
+            response = Response(text = responseText, question = ssoQuestion, responseSet = set)
             response.put()
 
         self.redirect('/ssosuccess')
@@ -142,6 +177,8 @@ application = webapp.WSGIApplication(
                                       ('/ssosuccess', SSOSuccess),
                                       ('/qadmin', QuestionAdmin),
                                       ('/responses', ResponseReview),
+                                      ('/responsesets', ResponseSetReview),
+                                      ('/deleteresponse', DeleteResponseSet),
                                       ('/newquestion', NewQuestion),
                                       ('/deletequestion', DeleteQuestion)],
                                      debug=True)

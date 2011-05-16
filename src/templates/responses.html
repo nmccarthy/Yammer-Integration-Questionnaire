@@ -26,7 +26,7 @@
 		<tr><th class="leftTableHeader">Email</th><th>Response</th></tr>
 		{% for response in responses %}
 			<tr class="{% cycle even,odd %}">
-				<td>{{ response.responder.email }}</td>
+				<td>{{ response.responseSet.responder.email }}</td>
 				<td>{{ response.text }}</td>
 			</tr>
 		{% endfor %}
