@@ -4,6 +4,7 @@ body {
 	font-family: Arial, sans-serif;
 	margin: 0;
 	padding: 0;
+	min-width: 1024px;
 }
 
 h1 {
@@ -65,18 +66,18 @@ table {
 	border-right: solid 1px #ACD0EA;
 	padding-top: 10px;
 	height: 500px;
+	overflow: hidden;
 }
 
 #mainContent {
-	float: right;
-	width: 83%;
+	width: 84%;
 	padding-top: 10px;
-	margin-right: 1%;
+	overflow: hidden;
 }
 
 #breadCrumb {
 	list-style-type: none;
-	margin: 15px 0 0 40px;
+	margin: 15px 0 0 20px;
 }
 
 #breadCrumb li {

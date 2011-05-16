@@ -2,7 +2,7 @@ from google.appengine.ext import webapp
 from google.appengine.ext.webapp.util import run_wsgi_app
 from google.appengine.ext.webapp import template
 from models import Question, Response, Responder
-#from google.appengine.api import mail
+from google.appengine.api import mail
 
 class MainPage(webapp.RequestHandler):
     def get(self):
@@ -16,24 +16,23 @@ class MainPage(webapp.RequestHandler):
 class ADSyncQuestionnaire(webapp.RequestHandler):
     def get(self):
         adQuestions = Question.gql('WHERE product = :1', 'ADSync')
-        adResponses = Response.all()
 
-        values = { 'adQuestions': adQuestions, 'adResponses': adResponses }
+        values = { 'adQuestions': adQuestions }
         self.response.out.write(template.render('templates/adsync.html', values))
 
 class SharePointQuestionnaire(webapp.RequestHandler):
     def get(self):
-        adQuestions = Question.gql('WHERE product = :1', 'ADSync')
-        
-        values = { 'adQuestions': adQuestions }
-        self.response.out.write(template.render('templates/adsync.html', values))
+        spQuestions = Question.gql('WHERE product = :1', 'SharePoint Web Part')
+
+        values = { 'spQuestions': spQuestions }
+        self.response.out.write(template.render('templates/sharepoint.html', values))
 
 class SSOQuestionnaire(webapp.RequestHandler):
     def get(self):
-        adQuestions = Question.gql('WHERE product = :1', 'ADSync')
+        ssoQuestions = Question.gql('WHERE product = :1', 'SSO')
 
-        values = { 'adQuestions': adQuestions }
-        self.response.out.write(template.render('templates/adsync.html', values))
+        values = { 'ssoQuestions': ssoQuestions }
+        self.response.out.write(template.render('templates/sso.html', values))
 
 class QuestionAdmin(webapp.RequestHandler):
     def get(self):
@@ -70,10 +69,7 @@ class DeleteQuestion(webapp.RequestHandler):
 
 class ADRespond(webapp.RequestHandler):
     def post(self):
-        responderName = self.request.get('name')
-        responderEmail = self.request.get('email')
-        responderCompany = self.request.get('company')
-        newUser = Responder(name = responderName, email = responderEmail, company = responderCompany)
+        newUser = Responder(name = self.request.get('name'), email = self.request.get('email'), company = self.request.get('company'))
         newUser.put()
 
         adQuestions = Question.gql('WHERE product = :1', 'ADSync')
@@ -83,14 +79,13 @@ class ADRespond(webapp.RequestHandler):
             response = Response(text = responseText, question = adQuestion, responder = newUser)
             response.put()
 
+        mail.send_mail('nmccarthy@gmail.com', 'nmccarthy@muchomail.com', 'Test Subject', 'Test Body')
+
         self.redirect('/adsuccess')
 
 class SPRespond(webapp.RequestHandler):
     def post(self):
-        responderName = self.request.get('name')
-        responderEmail = self.request.get('email')
-        responderCompany = self.request.get('company')
-        newUser = Responder(name = responderName, email = responderEmail, company = responderCompany)
+        newUser = Responder(name = self.request.get('name'), email = self.request.get('email'), company = self.request.get('company'))
         newUser.put()
 
         spQuestions = Question.gql('WHERE product = :1', 'SharePoint Web Part')
@@ -104,10 +99,7 @@ class SPRespond(webapp.RequestHandler):
 
 class SSORespond(webapp.RequestHandler):
     def post(self):
-        responderName = self.request.get('name')
-        responderEmail = self.request.get('email')
-        responderCompany = self.request.get('company')
-        newUser = Responder(name = responderName, email = responderEmail, company = responderCompany)
+        newUser = Responder(name = self.request.get('name'), email = self.request.get('email'), company = self.request.get('company'))
         newUser.put()
 
         ssoQuestions = Question.gql('WHERE product = :1', 'SSO')

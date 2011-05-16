@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block addTitle %}<title>Yammer Integration Products</title>{% endblock addTitle %}
+
+{% block breadCrumb %}
+	<ul id="breadCrumb">
+		<li><a href="/">Home</a></li>
+		<ul>
+			<li>SSO Questionnaire</li>
+		</ul>
+	</ul>
+{% endblock breadCrumb %}
+
+{% block addCSS %}
+	<link type="text/css" rel="stylesheet" href="/css/questionnaire.css" />
+{% endblock addCSS %}
+
+{% block body %}
+		<h2>Yammer SSO Questionnaire</h2>
+		<p>The answers to these questions will help us support your integration project.</p>
+		<form action="/ssorespond" method="post">
+			<table id="userTable">
+				<tr>
+					<td><label>Name:</label></td>
+					<td><input type="text" name="name" size="80"/></td>
+				</tr>
+				<tr>
+					<td><label>Email:</label></td>
+					<td><input type="text" name="email" size="80"/></td>
+				</tr>
+				<tr>
+					<td><label>Company:</label></td>
+					<td><input type="text" name="company" size="80"/></td>
+				</tr>
+			</table>
+			{% for question in ssoQuestions %}
+				<h3 class="questionHeader">{{question.text}}</h3>
+				<p><textarea class="qEntry" name="response{{question.key.id}}" rows="4" cols="100"></textarea></p>
+			{% endfor %}
+			<p class="submitWrapper"><input type="submit" value="Submit"/></p>
+		</form>
+{% endblock body %}

@@ -1,6 +1,12 @@
 /* ////////////////  AD Success styles  //////////////// */
 
-#downloadLink {
+.downloadLink {
 	margin-top: 40px;
 	font-size: 25px;
+}
+
+.orP {
+	margin-top: 40px;
+	font-size: 25px;
+	font-weight: bold;
 }
