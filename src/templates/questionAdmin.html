@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block addTitle %}<title>Yammer IE: Administration</title>{% endblock addTitle %}
+
+{% block breadCrumb %}
+	<ul id="breadCrumb">
+		<li><a href="/">Home</a></li>
+		<ul>
+			<li>Admin</li>
+		</ul>
+	</ul>
+{% endblock breadCrumb %}
+
+{% block addCSS %}
+	<link type="text/css" rel="stylesheet" href="/css/questionAdmin.css" />
+{% endblock addCSS %}
+
+{% block body %}
+	<h2>Yammer IE Questionnaire Admin</h2>
+	
+	<div id="questionCreator">
+		<h3>Add a Question</h3>
+		<form action="/newquestion" method="post">
+			<table id="newQuestionTable">
+				<tr>
+					<td><label>Question: </label> <input type="text" name="questionText" size="100"/></td>
+					<td><select name="productChoice">
+	  						<option value="ADSync">ADSync</option>
+	  						<option value="SharePoint Web Part">SharePoint Web Part</option>
+	  						<option value="SSO">SSO</option>
+					</select></td>
+				</tr>
+				<tr>
+					<td class="createQuestion" colspan="2"><input type="submit" value="Add Question"/></td>
+				</tr>
+			</table>
+		</form>
+	</div>
+	<table id="questionTable">
+		<colgroup>
+			<col class="productCol" />
+			<col class="questionCol" />
+			<col class="viewCol" />
+			<col class="deleteCol" />
+		</colgroup>
+		<tr><th>Product</th><th>Question</th><th> </th><th> </th></tr>
+		{% for question in questions %}
+			<tr class="{% cycle even,odd %}">
+				<td class="centerCell">{{ question.product }}</td>
+				<td>{{question.text}}</td>
+				<td class="centerCell"><a href="/responses?id={{question.key.id}}">View Responses</a></td>
+				<td class="centerCell"><a href="/deletequestion?id={{question.key.id}}">Delete</a></td>
+			</tr>
+		{% endfor %}
+	</table>
+{% endblock body %}

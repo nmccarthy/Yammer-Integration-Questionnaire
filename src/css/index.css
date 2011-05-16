@@ -1,0 +1,24 @@
+/* ////////////////  Index styles  //////////////// */
+
+#qList {
+	list-style-type: none;
+	margin: 30px auto 0 auto;
+	width: 90%;
+}
+
+#qList li {
+	margin: 20px 0 0 0;
+	padding: 0;
+	border: solid 1px #b2b2b2;
+	background-color: #ebebeb;
+}
+
+#qList li p {
+	padding: 5px;
+}
+
+.description {
+	padding: 10px !important;
+	border-bottom: solid 1px #b2b2b2;
+	background-color: #ffffff;
+}

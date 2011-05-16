@@ -1,0 +1,12 @@
+application: yammerie
+version: 1
+runtime: python
+api_version: 1
+
+handlers:
+- url: /images
+  static_dir: images
+- url: /css
+  static_dir: css
+- url: /.*
+  script: questionnaire.py

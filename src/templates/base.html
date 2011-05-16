@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" />
+
+	<head>
+		{% block addTitle %}
+		{% endblock addTitle %}
+
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></meta>
+
+		<link rel="icon" type="image/ico" href="/images/favicon.ico"/>
+
+		<link type="text/css" rel="stylesheet" href="/css/base.css" />
+		{% block addCSS %}
+		{% endblock addCSS %}
+	</head>
+
+	<body>
+	
+		{% block mastHead %}
+			<div id="mastHead">
+				<h1><img id="bannerImage" src="images/yammer_bubble.png" /> Yammer Integration Products</h1>
+			</div>
+		{% endblock mastHead %}
+
+		<div id="naviBar">
+			{% block breadCrumb %}
+			{% endblock breadCrumb %}
+		</div>
+
+		<div id="mainContent">
+			{% block body %}{% endblock body %}
+		</div>
+
+	</body>
+
+</html>

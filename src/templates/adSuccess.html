@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block addTitle %}<title>Yammer Integration Products</title>{% endblock addTitle %}
+
+{% block breadCrumb %}
+	<ul id="breadCrumb">
+		<li><a href="/">Home</a></li>
+		<ul>
+			<li>ADSync Download</li>
+		</ul>
+	</ul>
+{% endblock breadCrumb %}
+
+{% block addCSS %}
+	<link type="text/css" rel="stylesheet" href="/css/adsuccess.css" />
+{% endblock addCSS %}
+
+{% block body %}
+	<h2>Thanks for responding!</h2>
+	<p>Please download the installation files and documentation from the link below.</p>
+	<p id="downloadLink"><a href="https://yammer-inc.box.net/shared/cs1j7969p0">Download Yammer ADSync Utility</a></p>
+{% endblock body %}

@@ -1,0 +1,58 @@
+/* ////////////////  Response styles  //////////////// */
+
+.createQuestion {
+	text-align: center;
+}
+
+#questionCreator {
+	width: 90%;
+	border: solid 1px #b2b2b2;
+	margin: 20px auto 0 auto;
+	padding-bottom: 10px;
+}
+
+#questionCreator h3 {
+	margin: 0;
+	padding: 0;
+	text-align: center;
+	border-bottom: solid 1px #b2b2b2;
+	background-color: #ebebeb;
+}
+
+#newQuestionTable {
+	margin: 20px auto 0 auto;
+}
+
+.productCol{
+	width: 25%;
+}
+
+.questionCol {
+	width: 45%;
+}
+
+.viewCol {
+	width: 15%;
+}
+
+.deleteCol {
+	width: 15%;
+}
+
+#questionTable {
+	margin: 35px auto 0 auto;
+	width: 90%; 
+}
+
+#questionTable td {
+	padding: 10px;
+}
+
+#questionTable th {
+	text-align: center;
+	border-bottom: solid 1px #000000;
+}
+
+.centerCell {
+	text-align: center;
+}

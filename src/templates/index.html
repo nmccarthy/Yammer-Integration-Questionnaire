@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block addTitle %}<title>Yammer Integration Products</title>{% endblock addTitle %}
+
+{% block breadCrumb %}
+	<ul id="breadCrumb">
+		<li><a href="/">Home</a></li>
+	</ul>
+{% endblock breadCrumb %}
+
+{% block addCSS %}
+	<link type="text/css" rel="stylesheet" href="/css/index.css" />
+{% endblock addCSS %}
+
+{% block body %}
+		<h2>Yammer Integration Questionnaires</h2>
+		<p>Complete a questionnaire below to download the associated integration package.</p>
+		<ul id="qList">
+			<li>
+				<p class="description">Yammer's ADSync utility synchronizes the users in your Yammer community with your existing Active Directory structure. To download the latest version of the Yammer ADSync utility and the associated documentation, please complete the questionnaire.</p>
+				<p><a href="/adsync">ADSync Questionnaire ({{ numADQuestions }} questions)</a></p>
+			</li>
+			<li>
+				<p class="description">Yammer's ADSync utility synchronizes the users in your Yammer community with your existing Active Directory structure. To download the latest version of the Yammer ADSync utility and the associated documentation, please complete the questionnaire.</p>
+				<p><a href="/sharepoint">SharePoint Web Part Questionnaire ({{ numSPQuestions }} questions)</a></p>
+			</li>
+			<li>
+				<p class="description">Yammer's ADSync utility synchronizes the users in your Yammer community with your existing Active Directory structure. To download the latest version of the Yammer ADSync utility and the associated documentation, please complete the questionnaire.</p>
+				<p><a href="/sso">SAML-based SSO ({{ numSSOQuestions }} questions)</a></p>
+			</li>
+		</ul>
+{% endblock body %}

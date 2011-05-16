@@ -1,0 +1,18 @@
+/* ////////////////  Questionnaire styles  //////////////// */
+
+#mainContent form {
+	margin: 30px;
+}
+
+#userTable {
+	margin: 0 auto;
+}
+
+.questionHeader {
+	margin-top: 20px;
+	text-align: center;
+}
+
+.submitWrapper {
+	margin-top: 10px;
+}

@@ -1,0 +1,24 @@
+/* ////////////////  Response styles  //////////////// */
+
+.responseTable {
+	width: 90%;
+	margin: 20px auto 0 auto;
+}
+
+.emailCol{
+	width: 30%;
+}
+
+.responseCol {
+	width: 70%;
+}
+
+.responseTable th {
+	text-align: center;
+	border-bottom: solid 1px #000000;
+}
+
+.responseTable td {
+	text-align: center;
+	padding: 10px 0 10px 0;
+}

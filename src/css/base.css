@@ -1,0 +1,97 @@
+/* ////////////////  Basic styles  //////////////// */
+
+body {
+	font-family: Arial, sans-serif;
+	margin: 0;
+	padding: 0;
+}
+
+h1 {
+	font-size: 40px;
+	margin: 0;
+	padding: 0;
+}
+
+h2 {
+	padding: 0;
+	text-align: center;
+	width: 90%;
+	margin: 10px auto 0 auto;
+}
+
+h3 {
+	padding: 0;
+	margin: 10px auto 0 auto;
+}
+
+p {
+	padding: 5px 0 0 0;
+	margin: 0;
+	text-align: center;
+}
+
+ul {
+	margin: 0;
+	padding: 0;
+}
+
+li {
+	margin: 0;
+	padding: 0;
+}
+
+table {
+	table-layout: fixed;
+	border-spacing: 0;
+}
+
+#mastHead {
+	text-align: center;
+	border-bottom: solid 1px #ACD0EA;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	background-color: #DCEBF7;
+}
+
+#bannerImage {
+	height: 42px;
+	width: auto;
+	vertical-align: bottom;
+}
+
+#naviBar {
+	float: left;
+	width: 15%;
+	border-right: solid 1px #ACD0EA;
+	padding-top: 10px;
+	height: 500px;
+}
+
+#mainContent {
+	float: right;
+	width: 83%;
+	padding-top: 10px;
+	margin-right: 1%;
+}
+
+#breadCrumb {
+	list-style-type: none;
+	margin: 15px 0 0 40px;
+}
+
+#breadCrumb li {
+	margin-bottom: 5px;
+}
+
+#breadCrumb ul {
+	margin-left: 20px;
+	list-style-type: disc;
+}
+
+.odd {
+	background-color: #ebebeb;
+}
+
+table label {
+	font-weight: bold;
+}

@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block addTitle %}<title>Yammer IE: Responses</title>{% endblock addTitle %}
+
+{% block breadCrumb %}
+	<ul id="breadCrumb">
+		<li><a href="/">Home</a></li>
+		<ul>
+			<li><a href="/qadmin">Admin</a></li>
+			<li>Responses</li>
+		</ul>
+	</ul>
+{% endblock breadCrumb %}
+
+{% block addCSS %}
+	<link type="text/css" rel="stylesheet" href="/css/responses.css" />
+{% endblock addCSS %}
+
+{% block body %}
+	<h2 class="question">Q: {{ question.text }}</h2>
+	<table class="responseTable" cellspacing="0">
+		<colgroup>
+			<col class="emailCol" />
+			<col class="responseCol" />
+		</colgroup>
+		<tr><th class="leftTableHeader">Email</th><th>Response</th></tr>
+		{% for response in responses %}
+			<tr class="{% cycle even,odd %}">
+				<td>{{ response.responder.email }}</td>
+				<td>{{ response.text }}</td>
+			</tr>
+		{% endfor %}
+	</table>
+{% endblock body %}
