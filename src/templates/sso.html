@@ -22,20 +22,20 @@
 			<table id="userTable">
 				<tr>
 					<td><label>Name:</label></td>
-					<td><input type="text" name="name" size="80"/></td>
+					<td><input type="text" name="name" size="60"/></td>
 				</tr>
 				<tr>
 					<td><label>Email:</label></td>
-					<td><input type="text" name="email" size="80"/></td>
+					<td><input type="text" name="email" size="60"/></td>
 				</tr>
 				<tr>
 					<td><label>Company:</label></td>
-					<td><input type="text" name="company" size="80"/></td>
+					<td><input type="text" name="company" size="60"/></td>
 				</tr>
 			</table>
 			{% for question in ssoQuestions %}
 				<h3 class="questionHeader">{{question.text}}</h3>
-				<p><textarea class="qEntry" name="response{{question.key.id}}" rows="4" cols="100"></textarea></p>
+				<p><textarea class="qEntry" name="response{{question.key.id}}" rows="4" cols="70"></textarea></p>
 			{% endfor %}
 			<p class="submitWrapper"><input type="submit" value="Submit"/></p>
 		</form>

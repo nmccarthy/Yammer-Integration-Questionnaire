@@ -15,3 +15,30 @@
 .submitWrapper {
 	margin-top: 10px;
 }
+
+form textarea {
+	font-size: 18px;
+	color: #575757;
+	border: solid 1px #696969;
+	background-color: #FFFFD8;
+}
+
+#userTable input {
+	font-size: 18px;
+	color: #575757;
+	border: solid 1px #696969;
+	background-color: #FFFFD8;
+}
+
+form label {
+	font-size: 19px;
+}
+
+#userTable tr {
+	height: 45px;
+}
+
+.submitWrapper input {
+	font-size: 19px;
+	width: 125px;
+}
