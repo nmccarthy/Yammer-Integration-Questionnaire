@@ -1,0 +1,9 @@
+.byline {
+	text-align: center;
+	font-weight: normal;
+	font-style: italic;
+}
+
+.questionHeader {
+	margin-top: 20px;
+}

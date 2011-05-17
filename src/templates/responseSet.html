@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block addTitle %}<title>Yammer IE: Response</title>{% endblock addTitle %}
+
+{% block breadCrumb %}
+	<ul id="breadCrumb">
+		<li><a href="/">Home</a></li>
+		<ul>
+			<li><a href="/qadmin">Admin</a></li>
+			<li>Response</li>
+		</ul>
+	</ul>
+{% endblock breadCrumb %}
+
+{% block addCSS %}
+	<link type="text/css" rel="stylesheet" href="/css/responseSet.css" />
+{% endblock addCSS %}
+
+{% block body %}
+	<h2>Response to {{ responseSet.product }} Questionnaire</h3>
+	<h3 class="byline">Submitted by {{ responseSet.responder.email }} on {{ responseSet.date|date:"M d Y" }} at {{ responseSet.date|time:"P" }}</h3>
+		{% for response in responses %}
+			<h3 class="questionHeader">{{ response.question.text }}</h3>
+			<p>{{ response.text }}</p>
+		{% endfor %}
+{% endblock body %}
