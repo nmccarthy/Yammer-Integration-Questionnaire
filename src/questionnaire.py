@@ -103,12 +103,21 @@ class ADRespond(webapp.RequestHandler):
 
         adQuestions = Question.gql('WHERE product = :1', 'ADSync')
 
+        htmlBody = '<h2>Response to ADSync Questionnaire</h2><p><i>Submitted by ' + newUser.name +', ' + newUser.email + '</i></p>'
+
         for adQuestion in adQuestions:
             responseText = self.request.get('response' + str(adQuestion.key().id()))
             response = Response(text = responseText, question = adQuestion, responseSet = set)
             response.put()
+            htmlBody += '<h3>' + adQuestion.text + '</h3>' + '<p>' + response.text + '</p>'
 
-        mail.send_mail('nmccarthy@gmail.com', 'nmccarthy@yammer-inc.com', 'Questionnaire Response: ' + newUser.email, 'Test Body')
+        #send email notification
+        sender = 'nmccarthy@gmail.com'
+        recipients = ['nmccarthy@yammer-inc.com', 'nmccarthy@muchomail.com']
+        sub = newUser.name + ' from ' + newUser.company + ' responded to the ADSync Questionnaire'
+        plainBody = 'Get response here: http://yammerie.appspot.com/responsesets?id=' + str(set.key().id())
+
+        mail.send_mail(sender, recipients, sub, plainBody, html = htmlBody)
 
         self.redirect('/adsuccess')
 
@@ -122,10 +131,21 @@ class SPRespond(webapp.RequestHandler):
 
         spQuestions = Question.gql('WHERE product = :1', 'SharePoint Web Part')
 
+        htmlBody = '<h2>Response to SharePoint Questionnaire</h2><p><i>Submitted by ' + newUser.name +', ' + newUser.email + '</i></p>'
+
         for spQuestion in spQuestions:
             responseText = self.request.get('response' + str(spQuestion.key().id()))
             response = Response(text = responseText, question = spQuestion, responseSet = set)
             response.put()
+            htmlBody += '<h3>' + spQuestion.text + '</h3>' + '<p>' + response.text + '</p>'
+
+        #send email notification
+        sender = 'nmccarthy@gmail.com'
+        recipients = ['nmccarthy@yammer-inc.com', 'nmccarthy@muchomail.com']
+        sub = newUser.name + ' from ' + newUser.company + ' responded to the SharePoint Questionnaire'
+        plainBody = 'Get response here: http://yammerie.appspot.com/responsesets?id=' + str(set.key().id())
+
+        mail.send_mail(sender, recipients, sub, plainBody, html = htmlBody)
 
         self.redirect('/spsuccess')
 
@@ -139,10 +159,21 @@ class SSORespond(webapp.RequestHandler):
 
         ssoQuestions = Question.gql('WHERE product = :1', 'SSO')
 
+        htmlBody = '<h2>Response to SSO Questionnaire</h2><p><i>Submitted by ' + newUser.name +', ' + newUser.email + '</i></p>'
+
         for ssoQuestion in ssoQuestions:
             responseText = self.request.get('response' + str(ssoQuestion.key().id()))
             response = Response(text = responseText, question = ssoQuestion, responseSet = set)
             response.put()
+            htmlBody += '<h3>' + ssoQuestion.text + '</h3>' + '<p>' + response.text + '</p>'
+
+        #send email notification
+        sender = 'nmccarthy@gmail.com'
+        recipients = ['nmccarthy@yammer-inc.com', 'nmccarthy@muchomail.com']
+        sub = newUser.name + ' from ' + newUser.company + ' responded to the SSO Questionnaire'
+        plainBody = 'Get response here: http://yammerie.appspot.com/responsesets?id=' + str(set.key().id())
+
+        mail.send_mail(sender, recipients, sub, plainBody, html = htmlBody)
 
         self.redirect('/ssosuccess')
 
