@@ -112,8 +112,8 @@ class ADRespond(webapp.RequestHandler):
             htmlBody += '<h3>' + adQuestion.text + '</h3>' + '<p>' + response.text + '</p>'
 
         #send email notification
-        sender = 'nmccarthy@gmail.com'
-        recipients = ['nmccarthy@yammer-inc.com', 'nmccarthy@muchomail.com']
+        sender = 'nmccarthy@yammer-inc.com'
+        recipients = ['nmccarthy@yammer-inc.com', 'jwitte@yammer-inc.com', 'rblandford@yammer-inc.com']
         sub = newUser.name + ' from ' + newUser.company + ' responded to the ADSync Questionnaire'
         plainBody = 'Get response here: http://yammerie.appspot.com/responsesets?id=' + str(set.key().id())
 
@@ -140,8 +140,8 @@ class SPRespond(webapp.RequestHandler):
             htmlBody += '<h3>' + spQuestion.text + '</h3>' + '<p>' + response.text + '</p>'
 
         #send email notification
-        sender = 'nmccarthy@gmail.com'
-        recipients = ['nmccarthy@yammer-inc.com', 'nmccarthy@muchomail.com']
+        sender = 'nmccarthy@yammer-inc.com'
+        recipients = ['nmccarthy@yammer-inc.com', 'jwitte@yammer-inc.com', 'rblandford@yammer-inc.com']
         sub = newUser.name + ' from ' + newUser.company + ' responded to the SharePoint Questionnaire'
         plainBody = 'Get response here: http://yammerie.appspot.com/responsesets?id=' + str(set.key().id())
 
@@ -168,8 +168,8 @@ class SSORespond(webapp.RequestHandler):
             htmlBody += '<h3>' + ssoQuestion.text + '</h3>' + '<p>' + response.text + '</p>'
 
         #send email notification
-        sender = 'nmccarthy@gmail.com'
-        recipients = ['nmccarthy@yammer-inc.com', 'nmccarthy@muchomail.com']
+        sender = 'nmccarthy@yammer-inc.com'
+        recipients = ['nmccarthy@yammer-inc.com', 'jwitte@yammer-inc.com', 'rblandford@yammer-inc.com']
         sub = newUser.name + ' from ' + newUser.company + ' responded to the SSO Questionnaire'
         plainBody = 'Get response here: http://yammerie.appspot.com/responsesets?id=' + str(set.key().id())
 
