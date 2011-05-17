@@ -10,7 +10,6 @@
 	margin: 20px 0 0 0;
 	padding: 0;
 	border: solid 1px #b2b2b2;
-	background-color: #dbdbdb;
 }
 
 #qList li p {
@@ -20,11 +19,11 @@
 .description {
 	padding: 10px !important;
 	border-bottom: solid 1px #b2b2b2;
-	background-color: #ffffff;
 }
 
 .qLink {
 	line-height: 20px;
+	background-color: #dbdbdb;
 }
 
 .qLink img {
